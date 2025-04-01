@@ -41,11 +41,18 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        while (EnemiesSpawned < MaxEnemies)
+        while (GameManager.Instance.GameIsRunning == true)
         {
             yield return new WaitForSeconds(SpawnRate);
-            Instantiate(_enemy, _startPoint.position, Quaternion.identity);
+            PullEnemy();
+            
 
         }
+    }
+
+    private void PullEnemy()
+    {
+        _enemy = PoolManager.Instance.RequestEnemy();
+        _enemy.transform.position = _startPoint.position;
     }
 }

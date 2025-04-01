@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool GameIsRunning = false;
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -21,5 +22,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Start()
+    {
+        GameIsRunning = true;
     }
 }
