@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
     public bool GameIsRunning = false;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameIsRunning = true;
+        //GameIsRunning = true;
+        SpawnManager.Instance.StartCoroutine("SpawnEnemy");
     }
 }

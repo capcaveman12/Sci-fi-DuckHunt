@@ -20,8 +20,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform _startPoint;
 
-    private UIManager _instance;
-    public UIManager Instance
+    private static UIManager _instance;
+    public static UIManager Instance
     {
         get
         {
@@ -37,15 +37,5 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-    }
-
-    IEnumerator SpawnEnemy()
-    {
-        while(EnemiesSpawned < MaxEnemies)
-        {
-            yield return new WaitForSeconds(SpawnRate);
-            Instantiate(_enemy, _startPoint.position, Quaternion.identity);
-
-        }
     }
 }

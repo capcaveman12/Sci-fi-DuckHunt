@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public int EnemiesSpawned;
 
     [SerializeField]
-    public int SpawnRate = 1;
+    public int SpawnRate = 3;
 
     [SerializeField]
     public int MaxEnemies;
@@ -20,8 +20,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private Transform _startPoint;
 
-    private SpawnManager _instance;
-    public SpawnManager Instance
+    private static SpawnManager _instance;
+    public static SpawnManager Instance
     {
         get
         {
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
         _instance = this;
     }
 
-    IEnumerator SpawnEnemy()
+    public IEnumerator SpawnEnemy()
     {
         while (GameManager.Instance.GameIsRunning == true)
         {
