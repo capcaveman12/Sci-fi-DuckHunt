@@ -14,6 +14,9 @@ public class PoolManager : MonoBehaviour
     int _enemiesInList = 5;
 
     [SerializeField]
+    GameObject _startingPoint;
+
+    [SerializeField]
     GameObject _enemyContainer;
 
     private static PoolManager _instance;
@@ -60,6 +63,7 @@ public class PoolManager : MonoBehaviour
             if(enemy.activeInHierarchy == false)
             {
                 enemy.SetActive(true);
+                enemy.transform.position = _startingPoint.transform.position;
                 return enemy;
             }
         }

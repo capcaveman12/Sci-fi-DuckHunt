@@ -38,15 +38,16 @@ public class AI : MonoBehaviour
     [SerializeField]
     float _secMax;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    GameObject _startingPoint;
+
+    private void OnEnable()
     {
         _currentPoint = _waypoints[_index];
         _agent.SetDestination(_currentPoint.transform.position);
         _agent = GetComponent<NavMeshAgent>();
         _enemyAnimator = GetComponent<Animator>();
         _currentState = AIState.Running;
-
     }
 
     // Update is called once per frame
@@ -68,7 +69,14 @@ public class AI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Invoke("Hide", 1.0f);
+        if (other.tag == "Waypoint")
+        {
+            Invoke("Hide", 1.0f);
+        }
+        else if(other.tag == "End")
+        {
+            Recycle();
+        }
     }
 
     private void Hide()
@@ -97,6 +105,14 @@ public class AI : MonoBehaviour
         _currentState = AIState.Running;
         _agent.SetDestination(_currentPoint.transform.position);
         _agent.isStopped = false;
+    }
+
+    private void Recycle()
+    {
+        this.gameObject.SetActive(false);
+        transform.position = _startingPoint.transform.position;
+        _index = 0;
+        _currentPoint = _waypoints[0];
     }
 
 

@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public int EnemiesSpawned;
 
     [SerializeField]
-    public int SpawnRate = 3;
+    public float SpawnRate;
 
     [SerializeField]
     public int MaxEnemies;
@@ -34,6 +34,11 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SpawnRate = 1.0f;
+    }
+
     private void Awake()
     {
         _instance = this;
@@ -44,6 +49,7 @@ public class SpawnManager : MonoBehaviour
         while (GameManager.Instance.GameIsRunning == true)
         {
             yield return new WaitForSeconds(SpawnRate);
+            SpawnRate = 20.0f;
             PullEnemy();
             
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1801483842972449275
+--- !u!1 &6965776843963298852
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4117836773948894338}
-  - component: {fileID: 1024622705165949530}
+  - component: {fileID: 2964488469156807875}
+  - component: {fileID: 6560851316448018195}
   m_Layer: 0
-  m_Name: EndPoint
-  m_TagString: End
+  m_Name: WayPoint_C
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4117836773948894338
+--- !u!4 &2964488469156807875
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801483842972449275}
+  m_GameObject: {fileID: 6965776843963298852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.009931283, y: -0.691832, z: 0.009601814, w: 0.7219263}
-  m_LocalPosition: {x: 24.87, y: 1.318, z: 1.045}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.74, y: 0.45, z: 7.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 1.583, y: -87.561, z: 0.007}
---- !u!65 &1024622705165949530
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6560851316448018195
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801483842972449275}
+  m_GameObject: {fileID: 6965776843963298852}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -51,5 +51,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.2114677, y: 1, z: 1}
-  m_Center: {x: 1.4950073, y: -1.6505114e-10, z: -0.0000000061811276}
+  m_Size: {x: 0.3, y: 1.07, z: 4.5}
+  m_Center: {x: -5.7, y: 0.11, z: -4.13}

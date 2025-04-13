@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //GameIsRunning = true;
+        GameIsRunning = true;
         SpawnManager.Instance.StartCoroutine("SpawnEnemy");
     }
 }

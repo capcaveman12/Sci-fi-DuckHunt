@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2770247276195759760}
   - component: {fileID: 8898142051702682674}
   - component: {fileID: 5809286297456320838}
-  - component: {fileID: 6645044435779748412}
+  - component: {fileID: -5830169863160201274}
   m_Layer: 0
   m_Name: Robot 1 T-Pose
   m_TagString: Enemy
@@ -236,13 +236,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 150
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -262,16 +262,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentState: 0
   _waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 337177418641439084, guid: 982110fad893fe2458d19899c3c82f1e, type: 3}
+  - {fileID: 2678808993944217099, guid: e950c189bf1c3a8438bae54f16defc25, type: 3}
+  - {fileID: 6965776843963298852, guid: 0aef44fb419763a4cb667990bf2108ec, type: 3}
+  - {fileID: 3232522606293678464, guid: fed08ef586687394aaefc5e240aaa68f, type: 3}
+  - {fileID: 1801483842972449275, guid: e6bd1cdc00886894c85879db195a5dd1, type: 3}
   _agent: {fileID: 2770247276195759760}
-  _index: 0
   _enemyAnimator: {fileID: 5180853542790702150}
-  _currentWaypoint: {fileID: 0}
-  _isHiding: 0
+  _index: 0
+  _currentPoint: {fileID: 0}
+  _seconds: 0
+  _secMin: 3
+  _secMax: 15
+  _startingPoint: {fileID: 5945534642929144108, guid: 2d3e5e12c3022ef428dcd847f1bc20e4,
+    type: 3}
 --- !u!54 &5809286297456320838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -292,15 +296,15 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6645044435779748412
-MeshCollider:
+--- !u!136 &-5830169863160201274
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -317,10 +321,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 0.6167405
+  m_Height: 2.5468423
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7734207, z: 2.3763314e-10}
 --- !u!1 &5180853542797989388
 GameObject:
   m_ObjectHideFlags: 0
