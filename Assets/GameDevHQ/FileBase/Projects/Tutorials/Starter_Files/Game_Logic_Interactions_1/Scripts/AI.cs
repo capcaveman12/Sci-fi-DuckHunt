@@ -63,6 +63,11 @@ public class AI : MonoBehaviour
                 _enemyAnimator.SetBool("Hiding", true);
                  break;
             case AIState.Death:
+                //_agent.speed = 0;
+                //_agent.acceleration = 0;
+                _agent.ResetPath();
+                _enemyAnimator.SetTrigger("Death");
+                Invoke("Recycle", 3.0f);
                 break;
         }
     }
@@ -113,6 +118,11 @@ public class AI : MonoBehaviour
         transform.position = _startingPoint.transform.position;
         _index = 0;
         _currentPoint = _waypoints[0];
+    }
+
+    public void Death()
+    {
+        _currentState = AIState.Death;
     }
 
 

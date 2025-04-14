@@ -59,7 +59,12 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
             FPSController();
             CameraController();
-            HeadBobbing(); 
+            HeadBobbing();
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Shoot();
+            }
         }
 
         void FPSController()
@@ -172,6 +177,27 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
                     );
 
                 _fpsCamera.transform.localPosition = resetHead; //assign the head position back to the initial cam pos
+            }
+        }
+
+        private void Shoot()
+        {
+            Vector3 rayOrigin = _fpsCamera.transform.position;
+            Vector3 rayDirection = _fpsCamera.transform.forward;
+
+            RaycastHit hitInfo;
+
+            if(Physics.Raycast(rayOrigin, rayDirection, out hitInfo))
+            {
+                string hitName = hitInfo.transform.name;
+                Debug.Log("You Hit: " + hitName);
+
+                if (hitInfo.transform.CompareTag("Enemy"))
+                {
+                    var _enemyAI = hitInfo.collider.GetComponent<AI>();
+
+                    _enemyAI.Death();
+                }
             }
         }
     }
