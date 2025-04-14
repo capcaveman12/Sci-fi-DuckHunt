@@ -63,8 +63,6 @@ public class AI : MonoBehaviour
                 _enemyAnimator.SetBool("Hiding", true);
                  break;
             case AIState.Death:
-                //_agent.speed = 0;
-                //_agent.acceleration = 0;
                 _agent.ResetPath();
                 _enemyAnimator.SetTrigger("Death");
                 Invoke("Recycle", 3.0f);
@@ -123,6 +121,7 @@ public class AI : MonoBehaviour
     public void Death()
     {
         _currentState = AIState.Death;
+        GameManager.Instance.AddScore(50);
     }
 
 

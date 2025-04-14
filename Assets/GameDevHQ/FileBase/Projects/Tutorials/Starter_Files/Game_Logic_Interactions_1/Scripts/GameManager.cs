@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public bool GameIsRunning = false;
 
+    [SerializeField]
+    public int score = 0;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -30,5 +33,12 @@ public class GameManager : MonoBehaviour
     {
         GameIsRunning = true;
         SpawnManager.Instance.StartCoroutine("SpawnEnemy");
+    }
+
+    public int AddScore(int enemyScore)
+    {
+        score += enemyScore;
+
+        return score;
     }
 }

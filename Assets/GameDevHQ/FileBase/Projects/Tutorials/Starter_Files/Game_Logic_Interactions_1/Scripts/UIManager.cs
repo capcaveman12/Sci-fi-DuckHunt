@@ -1,24 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public int EnemiesSpawned;
+    public TMP_Text scoreTxt;
 
-    [SerializeField]
-    public int SpawnRate = 1;
-
-    [SerializeField]
-    public int MaxEnemies;
-
-    public int EnemiesInScene;
-
-    [SerializeField]
-    private GameObject _enemy;
-
-    [SerializeField]
-    private Transform _startPoint;
+    public int score;
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -34,8 +24,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+
+    }
+
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Update()
+    {
+        UpdateScore();
+    }
+
+    private void UpdateScore()
+    {
+        score = GameManager.Instance.score;
+        scoreTxt.text = "Score: " + score.ToString();
     }
 }

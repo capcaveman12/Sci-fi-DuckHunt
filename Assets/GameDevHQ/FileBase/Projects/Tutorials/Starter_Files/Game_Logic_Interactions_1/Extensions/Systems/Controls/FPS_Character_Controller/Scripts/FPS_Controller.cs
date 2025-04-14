@@ -187,7 +187,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
 
             RaycastHit hitInfo;
 
-            if(Physics.Raycast(rayOrigin, rayDirection, out hitInfo))
+            if(Physics.Raycast(rayOrigin, rayDirection, out hitInfo, Mathf.Infinity, 1 << 6))
             {
                 string hitName = hitInfo.transform.name;
                 Debug.Log("You Hit: " + hitName);
