@@ -78,6 +78,7 @@ public class AI : MonoBehaviour
         }
         else if(other.tag == "End")
         {
+            PoolManager.Instance.SubtractEnemy();
             Recycle();
         }
     }
@@ -120,6 +121,7 @@ public class AI : MonoBehaviour
 
     public void Death()
     {
+        PoolManager.Instance.SubtractEnemy();
         _currentState = AIState.Death;
         GameManager.Instance.AddScore(50);
     }

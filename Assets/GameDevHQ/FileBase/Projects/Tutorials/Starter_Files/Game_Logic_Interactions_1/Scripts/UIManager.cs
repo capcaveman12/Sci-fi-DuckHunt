@@ -10,7 +10,15 @@ public class UIManager : MonoBehaviour
 
     public int score;
 
+    public TMP_Text enemies;
+
     private static UIManager _instance;
+
+    [SerializeField]
+    private float _time = 60f;
+
+    [SerializeField]
+    private TMP_Text _timer;
     public static UIManager Instance
     {
         get
@@ -36,12 +44,20 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        _timer.text = _time.ToString();
+        _time -= Time.deltaTime;
         UpdateScore();
+        UpdateEnemies();
     }
 
     private void UpdateScore()
     {
         score = GameManager.Instance.score;
         scoreTxt.text = "Score: " + score.ToString();
+    }
+
+    private void UpdateEnemies()
+    {
+        enemies.text = "Enemies: " + GameManager.Instance.enemiesInScene.ToString();
     }
 }

@@ -19,6 +19,8 @@ public class PoolManager : MonoBehaviour
     [SerializeField]
     GameObject _enemyContainer;
 
+    public int activeEnemies = 0;
+
     private static PoolManager _instance;
     public static PoolManager Instance
     {
@@ -64,6 +66,7 @@ public class PoolManager : MonoBehaviour
             {
                 enemy.SetActive(true);
                 enemy.transform.position = _startingPoint.transform.position;
+                activeEnemies += 1;
                 return enemy;
             }
         }
@@ -72,7 +75,13 @@ public class PoolManager : MonoBehaviour
         newEnemy.transform.parent = _enemyContainer.transform;
         newEnemy.SetActive(true);
         _enemyPool.Add(newEnemy);
+        activeEnemies += 1;
 
         return newEnemy;
+    }
+
+    public void SubtractEnemy()
+    {
+        activeEnemies -= 1;
     }
 }

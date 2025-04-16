@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public int score = 0;
 
+    public int enemiesInScene;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -33,6 +35,11 @@ public class GameManager : MonoBehaviour
     {
         GameIsRunning = true;
         SpawnManager.Instance.StartCoroutine("SpawnEnemy");
+    }
+
+    private void Update()
+    {
+        enemiesInScene = SpawnManager.Instance.EnemiesInScene;
     }
 
     public int AddScore(int enemyScore)

@@ -44,6 +44,11 @@ public class SpawnManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        EnemiesInScene = PoolManager.Instance.activeEnemies;
+    }
+
     public IEnumerator SpawnEnemy()
     {
         while (GameManager.Instance.GameIsRunning == true)
