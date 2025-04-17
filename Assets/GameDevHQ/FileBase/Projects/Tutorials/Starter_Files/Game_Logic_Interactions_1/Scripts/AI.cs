@@ -41,8 +41,12 @@ public class AI : MonoBehaviour
     [SerializeField]
     GameObject _startingPoint;
 
+    [SerializeField]
+    bool _isActive = false;
+
     private void OnEnable()
     {
+        _isActive = true;
         _currentPoint = _waypoints[_index];
         _agent.SetDestination(_currentPoint.transform.position);
         _agent = GetComponent<NavMeshAgent>();
@@ -67,6 +71,12 @@ public class AI : MonoBehaviour
                 _enemyAnimator.SetTrigger("Death");
                 Invoke("Recycle", 3.0f);
                 break;
+        }
+
+        if(GameManager.Instance.GameIsRunning == false)
+        {
+            Recycle();
+            PoolManager.Instance.SubtractEnemy();
         }
     }
 
@@ -105,13 +115,16 @@ public class AI : MonoBehaviour
 
     private void MoveAgent()
     {
-        transform.Rotate(0, 0, 0);
-        _currentState = AIState.Running;
-        _agent.SetDestination(_currentPoint.transform.position);
-        _agent.isStopped = false;
+        if (_isActive == true)
+        {
+            transform.Rotate(0, 0, 0);
+            _currentState = AIState.Running;
+            _agent.SetDestination(_currentPoint.transform.position);
+            _agent.isStopped = false;
+        }
     }
 
-    private void Recycle()
+    public void Recycle()
     {
         this.gameObject.SetActive(false);
         transform.position = _startingPoint.transform.position;
@@ -121,18 +134,10 @@ public class AI : MonoBehaviour
 
     public void Death()
     {
+        _isActive = false;
         PoolManager.Instance.SubtractEnemy();
         _currentState = AIState.Death;
         GameManager.Instance.AddScore(50);
     }
-
-
-
-
-
-
-
-
-
 
 }

@@ -15,10 +15,24 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     [SerializeField]
-    private float _time = 60f;
+    private float _time;
 
     [SerializeField]
     private TMP_Text _timer;
+
+    public bool playerLost = false;
+
+    public bool playerWon = false;
+
+    [SerializeField]
+    private TMP_Text _wonText;
+
+    [SerializeField]
+    private TMP_Text _loseText;
+
+    private Coroutine _wonRoutine;
+
+    private Coroutine _loseRoutine;
     public static UIManager Instance
     {
         get
@@ -44,10 +58,19 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        _timer.text = _time.ToString();
-        _time -= Time.deltaTime;
+        Timer();
         UpdateScore();
         UpdateEnemies();
+
+        if(playerLost == true)
+        {
+            _loseRoutine = StartCoroutine(PlayerLost());
+        }
+
+        if(playerWon == true)
+        {
+            _wonRoutine = StartCoroutine(PlayerWon());
+        }
     }
 
     private void UpdateScore()
@@ -59,5 +82,32 @@ public class UIManager : MonoBehaviour
     private void UpdateEnemies()
     {
         enemies.text = "Enemies: " + GameManager.Instance.enemiesInScene.ToString();
+    }
+
+    private void Timer()
+    {
+        _time = GameManager.Instance._time;
+        int _minutes = Mathf.FloorToInt(_time / 60);
+        int _seconds = Mathf.FloorToInt(_time % 60);
+        _timer.text = string.Format("{0:00}:{1:00}", _minutes, _seconds);
+    }
+
+    IEnumerator PlayerLost()
+    {
+            _loseText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            _loseText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2.0f);
+            _loseText.gameObject.SetActive(true);
+    }
+
+    IEnumerator PlayerWon()
+    {
+            Debug.Log("Winner");
+            _wonText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            _wonText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2.0f);
+            _wonText.gameObject.SetActive(true);
     }
 }
