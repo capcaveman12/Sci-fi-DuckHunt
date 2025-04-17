@@ -11,6 +11,9 @@ public class PoolManager : MonoBehaviour
     private List<GameObject> _enemyPool;
 
     [SerializeField]
+    public List<GameObject> _activeEnemyList;
+
+    [SerializeField]
     int _enemiesInList = 5;
 
     [SerializeField]
@@ -40,6 +43,11 @@ public class PoolManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        activeEnemies = _activeEnemyList.Count;
+    }
+
     private void Start()
     {
         _enemyPool = GenerateEnemies(_enemiesInList);
@@ -66,7 +74,7 @@ public class PoolManager : MonoBehaviour
             {
                 enemy.SetActive(true);
                 enemy.transform.position = _startingPoint.transform.position;
-                activeEnemies += 1;
+                _activeEnemyList.Add(enemy);
                 return enemy;
             }
         }
@@ -75,13 +83,13 @@ public class PoolManager : MonoBehaviour
         newEnemy.transform.parent = _enemyContainer.transform;
         newEnemy.SetActive(true);
         _enemyPool.Add(newEnemy);
-        activeEnemies += 1;
+        _activeEnemyList.Add(newEnemy);
 
         return newEnemy;
     }
 
-    public void SubtractEnemy()
+    /*public void SubtractEnemy()
     {
         activeEnemies -= 1;
-    }
+    }*/
 }

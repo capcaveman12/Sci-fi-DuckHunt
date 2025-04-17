@@ -44,6 +44,17 @@ public class AI : MonoBehaviour
     [SerializeField]
     bool _isActive = false;
 
+    [SerializeField]
+    AudioSource _enemyAudio;
+
+    [SerializeField]
+    AudioClip _deathClip;
+
+    private void Start()
+    {
+        _enemyAudio = this.GetComponent<AudioSource>();
+    }
+
     private void OnEnable()
     {
         _isActive = true;
@@ -76,7 +87,7 @@ public class AI : MonoBehaviour
         if(GameManager.Instance.GameIsRunning == false)
         {
             Recycle();
-            PoolManager.Instance.SubtractEnemy();
+            PoolManager.Instance._activeEnemyList.Remove(this.gameObject);
         }
     }
 
@@ -88,7 +99,7 @@ public class AI : MonoBehaviour
         }
         else if(other.tag == "End")
         {
-            PoolManager.Instance.SubtractEnemy();
+            PoolManager.Instance._activeEnemyList.Remove(this.gameObject);
             Recycle();
         }
     }
@@ -134,10 +145,16 @@ public class AI : MonoBehaviour
 
     public void Death()
     {
+        Invoke("DeathAudio", 0.5f);
         _isActive = false;
-        PoolManager.Instance.SubtractEnemy();
+        PoolManager.Instance._activeEnemyList.Remove(this.gameObject);
         _currentState = AIState.Death;
         GameManager.Instance.AddScore(50);
+    }
+
+    private void DeathAudio()
+    {
+        _enemyAudio.PlayOneShot(_deathClip);
     }
 
 }

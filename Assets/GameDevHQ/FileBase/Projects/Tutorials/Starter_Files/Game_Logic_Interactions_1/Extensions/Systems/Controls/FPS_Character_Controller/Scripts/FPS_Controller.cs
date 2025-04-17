@@ -42,6 +42,9 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
         private float _lookSensitivity = 5.0f; //mouse sensitivity 
 
         private Camera _fpsCamera;
+
+        public GameObject _gun;
+        public AudioClip _gunShotClip;
         private void Start()
         {
             _controller = GetComponent<CharacterController>(); //assign the reference variable to the component
@@ -64,6 +67,7 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Shoot();
+                ShotAudio();
             }
         }
 
@@ -199,6 +203,12 @@ namespace GameDevHQ.FileBase.Plugins.FPS_Character_Controller
                     _enemyAI.Death();
                 }
             }
+        }
+
+        private void ShotAudio()
+        {
+            var _gunAudio = _gun.GetComponent<AudioSource>();
+            _gunAudio.PlayOneShot(_gunShotClip);
         }
     }
 }

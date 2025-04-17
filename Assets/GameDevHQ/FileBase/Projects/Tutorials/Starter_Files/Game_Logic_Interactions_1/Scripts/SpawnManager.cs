@@ -36,7 +36,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnRate = 1.0f;
+        PullEnemy();
+        SpawnRate = 10.0f;
     }
 
     private void Awake()
@@ -54,7 +55,7 @@ public class SpawnManager : MonoBehaviour
         while (GameManager.Instance.GameIsRunning == true)
         {
             yield return new WaitForSeconds(SpawnRate);
-            SpawnRate = 20.0f;
+            SpawnRate = 10.0f;
             PullEnemy();
             
 
